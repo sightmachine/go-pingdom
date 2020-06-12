@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"strconv"
+	"fmt"
 )
 
 // CheckService provides an interface to Pingdom checks.
@@ -31,7 +32,8 @@ func (cs *CheckService) List(params ...map[string]string) ([]CheckResponse, erro
 	if err != nil {
 		return nil, err
 	}
-
+	fmt.Println(req)
+    
 	resp, err := cs.client.client.Do(req)
 	if err != nil {
 		return nil, err
