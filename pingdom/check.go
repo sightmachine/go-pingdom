@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"strconv"
-	"fmt"
 )
 
 // CheckService provides an interface to Pingdom checks.
