@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"strconv"
+	"fmt"
 )
 
 // CheckService provides an interface to Pingdom checks.
@@ -43,10 +44,12 @@ func (cs *CheckService) List(params ...map[string]string) ([]CheckResponse, erro
 	}
 
 	bodyBytes, _ := ioutil.ReadAll(resp.Body)
+	fmt.Println("here here 2")
+	fmt.Println(bodyBytes)
 	bodyString := string(bodyBytes)
 	m := &listChecksJSONResponse{}
 	err = json.Unmarshal([]byte(bodyString), &m)
-
+    fmt.Println("here here 1")
 	return m.Checks, err
 }
 
@@ -59,7 +62,7 @@ func (cs *CheckService) Create(check Check) (*CheckResponse, error) {
 	if err := check.Valid(); err != nil {
 		return nil, err
 	}
-
+    fmt.Println("here here 3")
 	req, err := cs.client.NewRequest("POST", "/checks", check.PostParams())
 	if err != nil {
 		return nil, err
