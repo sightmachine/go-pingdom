@@ -32,7 +32,6 @@ func (cs *CheckService) List(params ...map[string]string) ([]CheckResponse, erro
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println(req)
     
 	resp, err := cs.client.client.Do(req)
 	if err != nil {
