@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	defaultBaseURL = "https://api.pingdom.com/api/2.1"
+	defaultBaseURL = "https://api.pingdom.com/api/3.1"
 )
 
 // Client represents a client to the Pingdom API.  This package also
@@ -122,8 +122,9 @@ func (pc *Client) NewRequest(method string, rsc string, params map[string]string
 	}
 
 	req, err := http.NewRequest(method, baseURL.String(), nil)
-	req.SetBasicAuth(pc.User, pc.Password)
-	req.Header.Add("Bearer", pc.APIKey)
+	// req.SetBasicAuth(pc.User, pc.Password)
+	bearer := "Bearer " + pc.APIKey
+	req.Header.Add("Authorization", bearer)
 	if pc.AccountEmail != "" {
 		req.Header.Add("Account-Email", pc.AccountEmail)
 	}
