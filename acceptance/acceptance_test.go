@@ -6,6 +6,7 @@ import (
 	"strconv"
 	"testing"
 	"time"
+	"fmt"
 
 	"github.com/sightmachine/go-pingdom/pingdom"
 	"github.com/stretchr/testify/assert"
@@ -125,7 +126,12 @@ func TestTeams(t *testing.T) {
 	assert.NoError(t, err)
 	assert.NotNil(t, team)
 
+	fmt.Println("here here 1")
 	id, _ := strconv.Atoi(team.ID)
+
+	fmt.Println("here here 1")
+
+	fmt.Println(team.ID)
 	teamr, err := client.Teams.Read(id)
 	assert.NoError(t, err)
 	assert.NotNil(t, teamr)
